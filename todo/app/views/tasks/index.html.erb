@@ -1,0 +1,31 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th class="h4">タスク</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @tasks.each do |task| %>
+        <tr>
+            <td><%= task.task %></td>
+            <td>
+                <%= link_to("編集","/tasks/#{task.id}/edit", {method:"post"})%>
+            </td>
+            <td>
+                <%= link_to("削除","/tasks/#{task.id}/destroy", {method:"post"})%>
+            </td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+
+<h1>Ajax#index</h1>
+<p id="hoge">赤色になるよ</p>
+
+<script>
+  $("#hoge").css("color","red")
+</script>
+
+# methodはHTTPメソッド名なのでroutes.rbで指定するDELETEと揃える。
+# date属性にはリンク押下時に走るJavascriptのプログラムを書く
+#data:{confirm:"本当に削除しますか？"} →できない（synaxerror)
